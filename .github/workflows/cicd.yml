@@ -47,7 +47,6 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and push Docker image
-      id: docker_build
       uses: docker/build-push-action@v4
       with:
         context: .
@@ -56,4 +55,4 @@ jobs:
         tags: ${{ secrets.DOCKER_USERNAME }}/flasktest-app:latest
 
     - name: Image digest
-      run: echo ${{ steps.docker_build.outputs.digest }}
+      run: echo ${{ steps.build-and-publish.outputs.digest }}
